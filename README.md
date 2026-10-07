@@ -22,6 +22,7 @@ everything can be undone.
 
 | Pack | What it brings | Licence | Download |
 |---|---|---|---|
+| Chinese Pinyin dictionary | About 116,000 words for the Pinyin keyboard, most used first (type nihao, get 你好). Pinyin from CC-CEDICT; word frequencies from jieba ([notices](NOTICES.md)) | CC-BY-SA-4.0 | [chinese-pinyin.mollikey](https://github.com/teaamf/-mollikey-packs/raw/main/packs/chinese-pinyin.mollikey) |
 | Runes (example) | A language made of rules: Latin letters write Elder Futhark runes (th → ᚦ, ng → ᛜ), with a keyboard and a few words | CC0-1.0 | [runes-example.mollikey](https://github.com/teaamf/-mollikey-packs/raw/main/packs/runes-example.mollikey) |
 
 ## Making a pack
@@ -35,4 +36,5 @@ This repository's own text and tools (this README, `MAKING-PACKS.md`, `tools/`) 
 under [CC0 1.0](LICENSE).
 
 Each pack carries its own licence, shown in the table and inside the pack (`pack.json`), and MolliKey shows it before
-installing. Packs published here use open licences only (CC0, CC BY, MIT and the like).
+installing. The sources packs were made from are credited in [NOTICES.md](NOTICES.md). Packs published here use open
+licences only (CC0, CC BY, CC BY-SA, MIT and the like).

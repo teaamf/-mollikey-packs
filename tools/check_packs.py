@@ -11,7 +11,8 @@ from pathlib import Path
 
 MAX_BYTES = 96 * 1024 * 1024
 MAX_ENTRIES = 512
-ENTRY = re.compile(r"^(words|assets)/[A-Za-z0-9][A-Za-z0-9._-]{0,80}$")
+ENTRY = re.compile(r"^(words|assets|lexicons)/[A-Za-z0-9][A-Za-z0-9._-]{0,80}$")
+LEXICON_KINDS = {"pinyin"}  # input methods a pack can bring a dictionary for
 PACK_ID = re.compile(r"^[a-z0-9][a-z0-9._-]{1,80}$")
 FILE_NAME = re.compile(r"^[a-z0-9][a-z0-9-]{0,80}\.mollikey$")
 FORMAT, FORMAT_VERSION = "mollikey.pack", 1
@@ -76,13 +77,19 @@ def check_pack(data: bytes):
         except Exception:
             problems.append("configuration.json isn't readable JSON")
     listed = set()
-    for kind in ("words", "assets"):
+    for kind in ("words", "assets", "lexicons"):
         for f in m.get(kind) or []:
             path = f.get("path") if isinstance(f, dict) else None
             listed.add(path)
             b = entries.get(path)
             if b is None or len(b) != f.get("size") or hashlib.sha256(b).hexdigest() != f.get("sha256"):
                 problems.append(f"file {path} is missing or doesn't match its size and SHA-256")
+            elif kind == "lexicons":
+                if f.get("key") not in LEXICON_KINDS:
+                    problems.append(f"dictionary '{f.get('key')}' is for an input method MolliKey doesn't have")
+                elif not any(len(l.split("\t")) >= 3 and l.split("\t")[0].strip().isalpha() and l.split("\t")[0].strip().isascii()
+                             for l in b.decode("utf-8", "replace").splitlines() if l.strip() and not l.startswith("#")):
+                    problems.append(f"dictionary {path} has no entries")
     for n in entries:
         if n not in ("pack.json", "configuration.json") and n not in listed:
             problems.append(f"unlisted file in the pack: {n}")

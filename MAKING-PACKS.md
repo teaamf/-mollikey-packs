@@ -66,6 +66,31 @@ the wait	40
 
 MolliKey scales each list to the same range, so a person's own short list still comes first.
 
+### A dictionary for an input method
+
+A pack can bring a dictionary for one of MolliKey's input methods. For now that is **Pinyin**: list the file under
+`lexicons` in `pack.json`, with the key `pinyin`:
+
+```json
+"lexicons": [ { "key": "pinyin", "path": "lexicons/pinyin.tsv", "size": 2500000, "sha256": "…" } ]
+```
+
+Plain UTF-8 text, one entry per line, `#` for comments:
+
+```
+# toneless pinyin, word, weight (higher comes first)
+nihao	你好	48
+zhongguo	中国	86
+nv	女	75
+```
+
+- Pinyin is written without tones or spaces, in lower case; ü is written `v` (`nv`, `lv`).
+- The weight orders the candidates; MolliKey's own starter list uses 60 to 90, so a scale of 1 to 100 fits beside it.
+- Once installed, the dictionary is used by every keyboard whose language types with Pinyin, together with MolliKey's
+  starter list.
+
+`tools/build_pinyin_pack.py` builds the Chinese Pinyin dictionary pack here from CC-CEDICT and jieba, as an example.
+
 ### A language made of rules
 
 A language whose `inputMethod` is `RULES` types whatever its `rules` say: each rule is "typing `from` writes `to`".
