@@ -31,5 +31,8 @@ pack here.
 
 ## Licences
 
+This repository's own text and tools (this README, `MAKING-PACKS.md`, `tools/`) are dedicated to the public domain
+under [CC0 1.0](LICENSE).
+
 Each pack carries its own licence, shown in the table and inside the pack (`pack.json`), and MolliKey shows it before
 installing. Packs published here use open licences only (CC0, CC BY, MIT and the like).

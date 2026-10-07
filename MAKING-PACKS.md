@@ -88,6 +88,12 @@ If one of the person's objects already has an id the pack uses, the pack's objec
    `https://github.com/teaamf/-mollikey-packs/raw/main/packs/<name>.mollikey`.
 3. Open a pull request. The pack must say its licence and, for CC BY data, its attribution.
 
+Every pull request runs `tools/check_packs.py` (you can run it yourself: `python3 tools/check_packs.py`). It refuses
+what MolliKey would refuse when opening the file (unexpected or unlisted files, a size or SHA-256 that doesn't match,
+a missing licence) and what this repository doesn't publish: a licence that isn't open, data needing attribution
+without one, an id another pack already uses, or a pack missing from the table. MolliKey still checks the
+configuration itself when the pack is installed.
+
 For a new version, raise `packVersion` and replace the file under the same name: the download link stays the same, and
 MolliKey replaces the older version when the new one is installed.
 
