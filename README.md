@@ -23,6 +23,13 @@ everything can be undone.
 | Pack | What it brings | Licence | Download |
 |---|---|---|---|
 | Runes (example) | A language made of rules: Latin letters write Elder Futhark runes (th → ᚦ, ng → ᛜ), with a keyboard and a few words | CC0-1.0 | [runes-example.mollikey](https://github.com/teaamf/-mollikey-packs/raw/main/packs/runes-example.mollikey) |
+| Français (AZERTY) | A mobile AZERTY layout with an É key, long-press accents, and MolliKey's shared symbols and emoji | CC0-1.0 | [french-azerty.mollikey](https://github.com/teaamf/-mollikey-packs/raw/main/packs/french-azerty.mollikey) |
+
+After installing, open **Français (AZERTY)** on the keyboards page and tap **Use**. The built-in **Français** layout
+remains selectable. In app revision `bbba14b` (17 November 2026), expand **Built-in** and scroll past the stock examples
+to find the installed pack's keyboard. The pack uses MolliKey's shared key definitions and French accent popups
+and requires ordinary key-width support on subdivided grids. Rebuild it with `python tools/build_french_azerty.py` and check its letter rows and
+archive bytes with `python -m unittest discover -s tools -p test_french_azerty.py`.
 
 ## Making a pack
 
